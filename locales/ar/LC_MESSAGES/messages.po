@@ -1,0 +1,192 @@
+# Arabic translations for PROJECT.
+# Copyright (C) 2026 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-01-04 22:41+0000\n"
+"PO-Revision-Date: 2026-01-04 22:40+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ar\n"
+"Language-Team: ar <LL@li.org>\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : "
+"n%100>=3 && n%100<=10 ? 3 : n%100>=0 && n%100<=2 ? 4 : 5);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: bot.py:113
+msgid "Fully Committed"
+msgstr "ملتزم تمامًا"
+
+#: bot.py:113
+msgid "Interested but Busy"
+msgstr "مهتم ولكن مشغول"
+
+#: bot.py:113
+msgid "Just Observing"
+msgstr "أراقب فقط"
+
+#: bot.py:113
+msgid "Not Interested"
+msgstr "غير مهتم"
+
+#: bot.py:116
+#, python-brace-format
+msgid ""
+"Hi {first_name}! We are upgrading our political group structure.\n"
+"\n"
+"1. How would you describe your current interest in building this party?"
+msgstr ""
+"مرحباً {first_name}! نحن نعمل على تطوير هيكل مجموعتنا السياسية.\n"
+"\n"
+"1. كيف تصف اهتمامك الحالي في بناء هذا الحزب؟"
+
+#: bot.py:125
+msgid "Bad Timing"
+msgstr "توقيت سيء"
+
+#: bot.py:125
+msgid "Meetings too long"
+msgstr "الاجتماعات طويلة جدًا"
+
+#: bot.py:125
+msgid "No clear agenda"
+msgstr "لا يوجد جدول أعمال واضح"
+
+#: bot.py:125
+msgid "I forget"
+msgstr "أنسى"
+
+#: bot.py:125
+msgid "Prefer text updates"
+msgstr "أفضل التحديثات النصية"
+
+#: bot.py:127
+msgid ""
+"2. Thanks! We noticed attendance is low. What is the main reason you "
+"usually can't make the meetings?"
+msgstr "2. شكراً لك! لاحظنا أن الحضور منخفض. ما هو السبب الرئيسي لعدم تمكنك من حضور الاجتماعات عادةً؟"
+
+#: bot.py:135
+msgid "Weekday Evenings"
+msgstr "أمسيات أيام الأسبوع"
+
+#: bot.py:135
+msgid "Weekends"
+msgstr "عطلات نهاية الأسبوع"
+
+#: bot.py:135
+msgid "Lunch Breaks"
+msgstr "استراحات الغداء"
+
+#: bot.py:135
+msgid "Async (Text only)"
+msgstr "غير متزامن (نصي فقط)"
+
+#: bot.py:137
+msgid "3. If we reorganized, what time block works best for you?"
+msgstr "3. إذا قمنا بإعادة التنظيم، ما هو أفضل وقت يناسبك؟"
+
+#: bot.py:145
+msgid "Social Media/PR"
+msgstr "وسائل التواصل الاجتماعي/العلاقات العامة"
+
+#: bot.py:145
+msgid "Writing Policy"
+msgstr "كتابة السياسات"
+
+#: bot.py:145
+msgid "Recruitment"
+msgstr "التوظيف"
+
+#: bot.py:145
+msgid "Just Voting"
+msgstr "التصويت فقط"
+
+#: bot.py:145
+msgid "No tasks right now"
+msgstr "لا توجد مهام حاليًا"
+
+#: bot.py:147
+msgid "4. Meetings aside, how would you prefer to contribute right now?"
+msgstr "4. بعيدًا عن الاجتماعات، كيف تفضل المساهمة الآن؟"
+
+#: bot.py:156
+msgid ""
+"5. Last question (Reply with text):\n"
+"In one sentence, what is one thing we could do to make this group more "
+"exciting for you?"
+msgstr ""
+"5. سؤال أخير (أجب بنص):\n"
+"في جملة واحدة، ما هو الشيء الوحيد الذي يمكننا القيام به لجعل هذه المجموعة أكثر إثارة بالنسبة لك؟"
+
+#: bot.py:165
+msgid "Saving your answers... please wait a moment."
+msgstr "جاري حفظ إجاباتك... يرجى الانتظار لحظة."
+
+#: bot.py:168
+msgid ""
+"✅ Done! Your feedback has been recorded. We will use this to improve our "
+"meetings."
+msgstr "✅ تم! تم تسجيل ملاحظاتك. سوف نستخدمها لتحسين اجتماعاتنا."
+
+#: bot.py:174
+msgid "Survey cancelled."
+msgstr "تم إلغاء الاستطلاع."
+
+#: bot.py:181
+msgid ""
+"Here are the available commands:\n"
+"/start - Begin the survey to provide your feedback.\n"
+"/cancel - Stop the survey at any time.\n"
+"/help - Show this help message."
+msgstr ""
+"إليك الأوامر المتاحة:\n"
+"/start - لبدء الاستطلاع وتقديم ملاحظاتك.\n"
+"/cancel - لإيقاف الاستطلاع في أي وقت.\n"
+"/help - لإظهار رسالة المساعدة هذه."
+
+#: bot.py:188
+msgid ""
+"\n"
+"\n"
+"--- Admin Commands ---\n"
+"/broadcast [message] - Send a message to all users."
+msgstr ""
+"\n"
+"\n"
+"--- أوامر المشرف ---\n"
+"/broadcast [message] - لإرسال رسالة إلى جميع المستخدمين."
+
+#: bot.py:197
+msgid "You are not authorized to use this command."
+msgstr "أنت غير مصرح لك باستخدام هذا الأمر."
+
+#: bot.py:202
+msgid "Please provide a message to send. Usage: /broadcast [your message]"
+msgstr "يرجى تقديم رسالة لإرسالها. الاستخدام: /broadcast [رسالتك]"
+
+#: bot.py:207
+#, python-brace-format
+msgid "Starting broadcast to {count} users..."
+msgstr "بدء البث إلى {count} من المستخدمين..."
+
+#: bot.py:217
+#, python-brace-format
+msgid ""
+"Broadcast finished.\n"
+"Sent: {sent_count}\n"
+"Failed: {failed_count}"
+msgstr ""
+"انتهى البث.\n"
+"تم الإرسال: {sent_count}\n"
+"فشل: {failed_count}"
+
+#: bot.py:247
+msgid "Bot is polling..."
+msgstr "البوت قيد التشغيل..."

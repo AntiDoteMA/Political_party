@@ -1,0 +1,148 @@
+import logging
+import gspread
+from google.oauth2.service_account import Credentials
+from telegram import Update, ReplyKeyboardMarkup, ReplyKeyboardRemove
+from telegram.ext import (
+    ApplicationBuilder,
+    ContextTypes,
+    CommandHandler,
+    MessageHandler,
+    filters,
+    ConversationHandler,
+)
+
+# --- CONFIGURATION ---
+TOKEN = 'YOUR_BOT_TOKEN_HERE'       # Replace with your Telegram Bot Token
+SHEET_NAME = 'Party Survey Data'    # Exact name of your Google Sheet
+CREDENTIALS_FILE = 'credentials.json'
+
+# --- LOGGING SETUP ---
+logging.basicConfig(
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    level=logging.INFO
+)
+
+# --- GOOGLE SHEETS SETUP ---
+SCOPES = [
+    "https://www.googleapis.com/auth/spreadsheets",
+    "https://www.googleapis.com/auth/drive"
+]
+
+def save_to_google_sheets(user_data):
+    """Authenticates and appends data to the Google Sheet."""
+    try:
+        creds = Credentials.from_service_account_file(CREDENTIALS_FILE, scopes=SCOPES)
+        client = gspread.authorize(creds)
+        sheet = client.open(SHEET_NAME).sheet1
+        
+        # Check/Add Headers (Now includes First Name)
+        if not sheet.acell('A1').value:
+            sheet.append_row(['User ID', 'First Name', 'Username', 'Interest', 'Barrier', 'Timing', 'Contribution', 'Feedback'])
+            
+        # Prepare the row with Name and ID
+        row = [
+            str(user_data.get('id')),
+            user_data.get('first_name'),  # Added First Name
+            f"@{user_data.get('username')}" if user_data.get('username') else "No Username",
+            user_data.get('interest'),
+            user_data.get('barrier'),
+            user_data.get('timing'),
+            user_data.get('contribution'),
+            user_data.get('feedback')
+        ]
+        
+        sheet.append_row(row)
+        logging.info(f"Data saved for user {user_data.get('first_name')}.")
+        
+    except Exception as e:
+        logging.error(f"Failed to save to Google Sheet: {e}")
+
+# --- CONVERSATION STATES ---
+INTEREST, BARRIERS, TIMING, CONTRIBUTION, FEEDBACK = range(5)
+
+# --- HANDLERS ---
+
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    user = update.effective_user
+    # Capture User Identity
+    context.user_data['id'] = user.id
+    context.user_data['username'] = user.username
+    context.user_data['first_name'] = user.first_name # Capture First Name
+    
+    reply_keyboard = [['Fully Committed', 'Interested but Busy'], ['Just Observing', 'Not Interested']]
+    
+    await update.message.reply_text(
+        f"Hi {user.first_name}! We are upgrading our political group structure.\n\n"
+        "1. How would you describe your current interest in building this party?",
+        reply_markup=ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True, resize_keyboard=True)
+    )
+    return INTEREST
+
+async def interest(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    context.user_data['interest'] = update.message.text
+    reply_keyboard = [['Bad Timing', 'Meetings too long'], ['No clear agenda', 'I forget'], ['Prefer text updates']]
+    await update.message.reply_text(
+        "2. Thanks! We noticed attendance is low. What is the main reason you usually can't make the meetings?",
+        reply_markup=ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True, resize_keyboard=True)
+    )
+    return BARRIERS
+
+async def barriers(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    context.user_data['barrier'] = update.message.text
+    reply_keyboard = [['Weekday Evenings', 'Weekends'], ['Lunch Breaks', 'Async (Text only)']]
+    await update.message.reply_text(
+        "3. If we reorganized, what time block works best for you?",
+        reply_markup=ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True, resize_keyboard=True)
+    )
+    return TIMING
+
+async def timing(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    context.user_data['timing'] = update.message.text
+    reply_keyboard = [['Social Media/PR', 'Writing Policy'], ['Recruitment', 'Just Voting'], ['No tasks right now']]
+    await update.message.reply_text(
+        "4. Meetings aside, how would you prefer to contribute right now?",
+        reply_markup=ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True, resize_keyboard=True)
+    )
+    return CONTRIBUTION
+
+async def contribution(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    context.user_data['contribution'] = update.message.text
+    await update.message.reply_text(
+        "5. Last question (Reply with text):\n"
+        "In one sentence, what is one thing we could do to make this group more exciting for you?",
+        reply_markup=ReplyKeyboardRemove()
+    )
+    return FEEDBACK
+
+async def feedback(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    context.user_data['feedback'] = update.message.text
+    await update.message.reply_text("Saving your answers... please wait a moment.")
+    save_to_google_sheets(context.user_data)
+    await update.message.reply_text(
+        "✅ Done! Your feedback has been recorded. We will use this to improve our meetings."
+    )
+    return ConversationHandler.END
+
+async def cancel(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text("Survey cancelled.", reply_markup=ReplyKeyboardRemove())
+    return ConversationHandler.END
+
+# --- MAIN ---
+if __name__ == '__main__':
+    application = ApplicationBuilder().token(TOKEN).build()
+    
+    conv_handler = ConversationHandler(
+        entry_points=[CommandHandler('start', start)],
+        states={
+            INTEREST: [MessageHandler(filters.TEXT & ~filters.COMMAND, interest)],
+            BARRIERS: [MessageHandler(filters.TEXT & ~filters.COMMAND, barriers)],
+            TIMING: [MessageHandler(filters.TEXT & ~filters.COMMAND, timing)],
+            CONTRIBUTION: [MessageHandler(filters.TEXT & ~filters.COMMAND, contribution)],
+            FEEDBACK: [MessageHandler(filters.TEXT & ~filters.COMMAND, feedback)],
+        },
+        fallbacks=[CommandHandler('cancel', cancel)]
+    )
+
+    application.add_handler(conv_handler)
+    print("Bot is polling...")
+    application.run_polling()

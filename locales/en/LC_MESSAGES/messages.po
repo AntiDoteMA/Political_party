@@ -1,0 +1,176 @@
+# English translations for PROJECT.
+# Copyright (C) 2026 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-01-04 22:41+0000\n"
+"PO-Revision-Date: 2026-01-04 22:40+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: bot.py:113
+msgid "Fully Committed"
+msgstr ""
+
+#: bot.py:113
+msgid "Interested but Busy"
+msgstr ""
+
+#: bot.py:113
+msgid "Just Observing"
+msgstr ""
+
+#: bot.py:113
+msgid "Not Interested"
+msgstr ""
+
+#: bot.py:116
+#, python-brace-format
+msgid ""
+"Hi {first_name}! We are upgrading our political group structure.\n"
+"\n"
+"1. How would you describe your current interest in building this party?"
+msgstr ""
+
+#: bot.py:125
+msgid "Bad Timing"
+msgstr ""
+
+#: bot.py:125
+msgid "Meetings too long"
+msgstr ""
+
+#: bot.py:125
+msgid "No clear agenda"
+msgstr ""
+
+#: bot.py:125
+msgid "I forget"
+msgstr ""
+
+#: bot.py:125
+msgid "Prefer text updates"
+msgstr ""
+
+#: bot.py:127
+msgid ""
+"2. Thanks! We noticed attendance is low. What is the main reason you "
+"usually can't make the meetings?"
+msgstr ""
+
+#: bot.py:135
+msgid "Weekday Evenings"
+msgstr ""
+
+#: bot.py:135
+msgid "Weekends"
+msgstr ""
+
+#: bot.py:135
+msgid "Lunch Breaks"
+msgstr ""
+
+#: bot.py:135
+msgid "Async (Text only)"
+msgstr ""
+
+#: bot.py:137
+msgid "3. If we reorganized, what time block works best for you?"
+msgstr ""
+
+#: bot.py:145
+msgid "Social Media/PR"
+msgstr ""
+
+#: bot.py:145
+msgid "Writing Policy"
+msgstr ""
+
+#: bot.py:145
+msgid "Recruitment"
+msgstr ""
+
+#: bot.py:145
+msgid "Just Voting"
+msgstr ""
+
+#: bot.py:145
+msgid "No tasks right now"
+msgstr ""
+
+#: bot.py:147
+msgid "4. Meetings aside, how would you prefer to contribute right now?"
+msgstr ""
+
+#: bot.py:156
+msgid ""
+"5. Last question (Reply with text):\n"
+"In one sentence, what is one thing we could do to make this group more "
+"exciting for you?"
+msgstr ""
+
+#: bot.py:165
+msgid "Saving your answers... please wait a moment."
+msgstr ""
+
+#: bot.py:168
+msgid ""
+"✅ Done! Your feedback has been recorded. We will use this to improve our "
+"meetings."
+msgstr ""
+
+#: bot.py:174
+msgid "Survey cancelled."
+msgstr ""
+
+#: bot.py:181
+msgid ""
+"Here are the available commands:\n"
+"/start - Begin the survey to provide your feedback.\n"
+"/cancel - Stop the survey at any time.\n"
+"/help - Show this help message."
+msgstr ""
+
+#: bot.py:188
+msgid ""
+"\n"
+"\n"
+"--- Admin Commands ---\n"
+"/broadcast [message] - Send a message to all users."
+msgstr ""
+
+#: bot.py:197
+msgid "You are not authorized to use this command."
+msgstr ""
+
+#: bot.py:202
+msgid "Please provide a message to send. Usage: /broadcast [your message]"
+msgstr ""
+
+#: bot.py:207
+#, python-brace-format
+msgid "Starting broadcast to {count} users..."
+msgstr ""
+
+#: bot.py:217
+#, python-brace-format
+msgid ""
+"Broadcast finished.\n"
+"Sent: {sent_count}\n"
+"Failed: {failed_count}"
+msgstr ""
+
+#: bot.py:247
+msgid "Bot is polling..."
+msgstr ""
+
